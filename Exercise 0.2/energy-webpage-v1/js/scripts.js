@@ -30,26 +30,29 @@ const content_abt = `
 `;
 
 
+function display_current_page(current){
+    button_nav_home.style.backgroundColor = "";
+    button_nav_tv.style.backgroundColor = "";
+    button_nav_abt.style.backgroundColor = "";
+    current.style.backgroundColor = "#f6f5b4";
+
+}
 
 function display_home() {
     main.innerHTML = content_home;
-    button_nav_home.style.backgroundColor = "#f6f5b4";
-    button_nav_tv.style.backgroundColor = "";
-    button_nav_abt.style.backgroundColor = "";
+    display_current_page(button_nav_home);
 };
 
 function display_tv() {
     main.innerHTML = content_tv;
-    button_nav_tv.style.backgroundColor = "#f6f5b4";
-    button_nav_home.style.backgroundColor = "";
-    button_nav_abt.style.backgroundColor = "";
+    display_current_page(button_nav_tv);
+
 };
 
 function display_abt() {
     main.innerHTML = content_abt;
-    button_nav_abt.style.backgroundColor = "#f6f5b4";
-    button_nav_home.style.backgroundColor = "";
-    button_nav_tv.style.backgroundColor = "";
+    display_current_page(button_nav_abt);
+
 };
 
 
