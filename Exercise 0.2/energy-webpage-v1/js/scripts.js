@@ -2,14 +2,15 @@
 const button_nav_home = document.querySelector("#nav-home");
 const button_nav_tv = document.querySelector("#nav-tv");
 const button_nav_abt = document.querySelector("#nav-abt");
+const page_now = document.querySelector("#page-now");
 
 const main = document.querySelector("main");
 
 const content_home = `
-    <h1>Welcome to Australia Appliance Energy Consumption<h1>
+    <h1>Welcome to Australia Appliance Energy Consumption</h1>
     <p>Here you can find the energy consumption rate of common household appliances in Australia. The list is update monthly.</p>
 
-    <h2>Appliance Energy Consumption in Australia<h2>
+    <h2>Appliance Energy Consumption in Australia</h2>
     <p>Household appliances and equipment account for an average of 25% of total residential energy consumption across Australia. However, this proportion will vary by household depending on the climate, the types of appliances in your home, and the way they are used. Heating and cooling uses around 40% of household energy use.
     <br>
     Appliances that use the largest amounts of energy include fridges and freezers (responsible for an average 7% of household energy use), clothes dryers (up to 10% of household energy use for heavy users), and TVs and home entertainment equipment (an average of around 5% of household energy use). In homes with a pool, the pool pump is a high user of energy (up to 18%).
@@ -20,25 +21,36 @@ const content_home = `
 `;
 
 const content_tv = `
-    <h1>TV<h1>
+    <h1>TV</h1>
     <p>Here you can find the energy consumption rate of appliances in Australia. The list is update annually.</p>
 `;
 
 const content_abt = `
-    <h1>About us<h1>
+    <h1>About us</h1>
     <p>We are the Australia Consumer Group.</p>
 `;
 
+
+
 function display_home() {
     main.innerHTML = content_home;
+    button_nav_home.style.backgroundColor = "#f6f5b4";
+    button_nav_tv.style.backgroundColor = "";
+    button_nav_abt.style.backgroundColor = "";
 };
 
 function display_tv() {
     main.innerHTML = content_tv;
+    button_nav_tv.style.backgroundColor = "#f6f5b4";
+    button_nav_home.style.backgroundColor = "";
+    button_nav_abt.style.backgroundColor = "";
 };
 
 function display_abt() {
     main.innerHTML = content_abt;
+    button_nav_abt.style.backgroundColor = "#f6f5b4";
+    button_nav_home.style.backgroundColor = "";
+    button_nav_tv.style.backgroundColor = "";
 };
 
 

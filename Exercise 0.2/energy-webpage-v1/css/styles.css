@@ -1,22 +1,38 @@
-a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-} 
+body {
+  margin: 0px; 
+}
+
+header{
+  margin: 0; 
+  background-color: #f6f5b4;
+  padding: 15px 30px;
+  display: flex;            
+  justify-content: left; 
+  align-items: center;
+}
  
+nav {
+  padding: 5px 30px; 
+  background-color: #edac29;
+}
 
 .nav ul {
   list-style-type: none;
-  padding: 0;
-  margin: 10px;
+  padding: 0px 10px;
   display: flex;
   justify-content: left;
-  /* background-color: #333; */
 }
 
 .nav li {
-  margin: 0 10px;
+  padding: 0 20px;
+}
+
+.nav ul li:hover {
+  color: #0004ff;
+}
+
+main {
+  padding: 0px 60px;
 }
 
 footer {
@@ -24,6 +40,9 @@ footer {
   bottom: 0;
   width: 100%;              
   border-top: 1px solid black;
+  margin: 0;
+  padding: 0;
+  background-color: #f6f5b4;
   display: flex;            
   justify-content: center;  
 }
