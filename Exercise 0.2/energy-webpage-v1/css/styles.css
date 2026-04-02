@@ -9,7 +9,7 @@ a {
 .nav ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 10px;
   display: flex;
   justify-content: left;
   /* background-color: #333; */
@@ -19,7 +19,17 @@ a {
   margin: 0 10px;
 }
 
-#footer-text {
-    display: flex;
-    justify-content: center;
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;              
+  border-top: 1px solid black;
+  display: flex;            
+  justify-content: center;  
 }
+
+#footer-text {
+  text-align: center;
+}
+
+

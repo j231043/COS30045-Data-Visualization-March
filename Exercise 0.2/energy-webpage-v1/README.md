@@ -63,10 +63,59 @@ Great question — the difference comes down to how the navigation is handled an
 So, it’s not that anchor tags are “not enough” — they’re just different. JavaScript swapping is about user experience optimization and building more dynamic interfaces.
 
 MODIFICATIONS MADE: 
-I used this to understand the the project requirements, and how does it differ from what I did for previous projects. Through this I am exposed to the term of client side routing, so I can do my own further research.
+I used this to understand the the project requirements, and how does it differ from what I did for previous projects. Through this I am exposed to the term of client side routing, so I can do my own study. I did not use this code provided in my assignment.
 
+2. question 2
+PROMPTS USED:
+html:
+<footer>
+            <p id="footer-text">2026 by xxx</p>
+        </footer>
 
+css:
+footer {
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid black;
+}
+#footer-text {
+    display: flex;
+    justify-content: center;
+}
 
+why is the footer text still at bottom left of window
+
+OUTPUT RECEIVED: 
+The reason your footer text is stuck at the bottom-left is because of how CSS flexbox works. Right now, you’ve applied display: flex and justify-content: center only to the <p> element itself, not to the <footer> container. Since the <footer> is the positioned element, its child (<p>) is still aligned to the left by default.
+How to fix it
+
+You need to make the footer itself a flex container and center its contents:
+css
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;              /* make footer span full width */
+  border-top: 1px solid black;
+  display: flex;            /* turn footer into flexbox */
+  justify-content: center;  /* center children horizontally */
+}
+#footer-text {
+  margin: 0;                /* remove default paragraph margin */
+}
+
+Why this works
+
+    footer is now a flex container.
+
+    justify-content: center on the footer ensures all its children (like your <p>) are centered horizontally.
+
+    width: 100% makes the footer span across the entire bottom of the window.
+
+    Removing the default margin on <p> prevents it from shifting slightly.
+
+MODIFICATIONS MADE: 
+I deleted the removal of dafault paragraph margin. 
 
 
 Reflection: Reflect on how the use of AI impacted your coding process and learning experience.
