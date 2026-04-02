@@ -1,8 +1,7 @@
 
-const button_nav_home = document.querySelector("#nav-home");
-const button_nav_tv = document.querySelector("#nav-tv");
-const button_nav_abt = document.querySelector("#nav-abt");
-const page_now = document.querySelector("#page-now");
+const button_nav_home = document.querySelector("#nav_home");
+const button_nav_tv = document.querySelector("#nav_tv");
+const button_nav_abt = document.querySelector("#nav_abt");
 
 const main = document.querySelector("main");
 
