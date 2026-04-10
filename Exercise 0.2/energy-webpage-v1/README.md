@@ -160,3 +160,11 @@ The answer corrected my understanding of setAttribute. No modification was made 
 Reflection: The use of AI helped to correct my previously wrong understanding of CSS and Javascript, and proved that my knowledge is rather weak. I need to spend more time learning.
 
 Acknowledgment: Microsoft Copilot was used in the completion of this assignment, mainly to (a) clarify assignment requirements, (b) debug code
+
+
+
+
+Other resources:
+Javascript course: https://www.linkedin.com/learning/javascript-essential-training/javascript-the-soil-from-which-the-modern-web-grows?resume=false
+W3Schools: https://www.w3schools.com/
+GeeksforGeeks: https://www.geeksforgeeks.org/

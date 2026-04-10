@@ -1,10 +1,11 @@
 
+// setting up variable for elements in HTML page
 const button_nav_home = document.querySelector("#nav_home");
 const button_nav_tv = document.querySelector("#nav_tv");
 const button_nav_abt = document.querySelector("#nav_abt");
-
 const main = document.querySelector("main");
 
+// content to be inserted into html main tag
 const content_home = `
     <h1>Welcome to Australia Appliance Energy Consumption</h1>
     <p>Here you can find the energy consumption rate of common household appliances in Australia. The list is update monthly.</p>
@@ -29,7 +30,7 @@ const content_abt = `
     <p>We are the Australia Consumer Group.</p>
 `;
 
-
+// function to highlight current page on the navigation menu
 function display_current_page(current){
     button_nav_home.style.backgroundColor = "";
     button_nav_tv.style.backgroundColor = "";
@@ -38,6 +39,7 @@ function display_current_page(current){
 
 }
 
+// function to insert content into html page 
 function display_home() {
     main.innerHTML = content_home;
     display_current_page(button_nav_home);
@@ -56,11 +58,12 @@ function display_abt() {
 };
 
 
-
+// event listeners for each page on the navigation menu
 button_nav_home.addEventListener("click", display_home)
 button_nav_tv.addEventListener("click", display_tv)
 button_nav_abt.addEventListener("click", display_abt)
 
+// default behaviour when page is first loaded is display homepage
 display_home();
 
 
