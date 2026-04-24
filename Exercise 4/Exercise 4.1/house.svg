@@ -11,9 +11,9 @@
     <rect width="20" height="50" x="60" y="100" fill="peru" />
     <rect width="20" height="50" x="90" y="-20" fill="peru" />
     <circle cx="75" cy="125" r="2" fill="black" />
-    <g fill="deepskyblue">
-        <rect width="20" height="20" x="40" y="70" />
-        <rect width="20" height="20" x="80" y="70" />
+    <g transform="translate(40,60)" fill="deepskyblue">
+        <rect width="20" height="20"  />
+        <rect width="20" height="20" x="40" />
     </g>
     <text x="130" y="120" font-size="30" text-anchor="start" fill="black">House</text> 
     <g>
