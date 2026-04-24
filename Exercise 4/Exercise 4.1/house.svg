@@ -9,6 +9,7 @@
     <polygon points="70,0 0,50 140,50" fill="peru" />
     <rect width="100" height="100" x="20" y="50" fill="saddlebrown" />
     <rect width="20" height="50" x="60" y="100" fill="peru" />
+    <rect width="20" height="50" x="90" y="-20" fill="peru" />
     <circle cx="75" cy="125" r="2" fill="black" />
     <g fill="deepskyblue">
         <rect width="20" height="20" x="40" y="70" />
