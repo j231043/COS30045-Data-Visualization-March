@@ -11,20 +11,31 @@
         <div>
             <h1>SVG image</h1>
             <svg width="600" height="400">  
+                <!-- sky -->
                 <rect width="100%" height="70%" fill="deepskyblue" />
+                <!-- grass -->
                 <rect width="100%" height="50%" y="70%" fill="green" />
 
+                <!-- house and path -->
                 <g transform="translate(230,130)">
+                    <!-- roof -->
                     <polygon points="70,0 0,50 140,50" fill="peru" />
+                    <!-- house main body -->
                     <rect width="100" height="100" x="20" y="50" fill="saddlebrown" />
+                    <!-- door -->
                     <rect width="20" height="50" x="60" y="100" fill="peru" />
-                    <rect width="20" height="50" x="90" y="-20" fill="peru" />
+                    <!-- door handle -->
                     <circle cx="75" cy="125" r="2" fill="black" />
+                    <!-- chimney -->
+                    <rect width="20" height="50" x="90" y="-20" fill="peru" />
+                    <!-- windows -->
                     <g transform="translate(40,60)" fill="deepskyblue">
                         <rect width="20" height="20"  />
                         <rect width="20" height="20" x="40" />
                     </g>
+                    <!-- text -->
                     <text x="130" y="120" font-size="30" text-anchor="start" fill="black">House</text> 
+                    <!-- path -->
                     <g>
                         <path d="M 60 150  Q 0 180 20 200   Q 100 250 10 300" fill="none" stroke="goldenrod" stroke-width="3" />
                         <g transform="translate(30,0)">
@@ -33,6 +44,7 @@
                     </g>
                 </g>
 
+                <!-- tree -->
                 <g transform="translate(40,80)">
                     <line x1="65" y1="100" x2="65" y2="200" stroke="saddlebrown" stroke-width="10" />
                     <g fill="forestgreen" >
@@ -42,6 +54,7 @@
                     </g>
                 </g>
 
+                <!-- sun -->
                 <circle cx="450" cy="70" r="40" fill="yellow" />
 
             </svg>
