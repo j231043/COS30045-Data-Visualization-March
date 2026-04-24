@@ -13,11 +13,16 @@
     <rect width="20" height="20" x="40" y="70" fill="deepskyblue" />
     <rect width="20" height="20" x="80" y="70" fill="deepskyblue" />
     <text x="130" y="120" font-size="30" text-anchor="start" fill="black">House</text> 
-
-    
   </g>
 
-  
+  <g transform="translate(40,80)">
+    <line x1="65" y1="100" x2="65" y2="200" stroke="saddlebrown" stroke-width="10" />
+    <g fill="forestgreen" >
+        <ellipse cx="65" cy="100" rx="50" ry="15" />
+        <ellipse cx="65" cy="75" rx="40" ry="15" />
+        <ellipse cx="65" cy="50" rx="30" ry="15" />     
+    </g>
+  </g>
 
   <circle cx="450" cy="70" r="40" fill="yellow" />
 
