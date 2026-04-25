@@ -22,8 +22,15 @@ const content_home = `
 
 const content_tv = `
     <h1>TV</h1>
-    <p>Here you can find the energy consumption rate of appliances in Australia. The list is update annually.</p>
+    <p>Depending on level of usage, TV may be a take up a portion of energy bills. However, that does not mean that we should stop watching TVs, but rather we should purchase energy efficient TVs so that we are able to continue watching TVs without putting a dent on our budget. There are several factors that influences the energy consumption of TVs, including screen technology and screen size.</p>
+
+    <h2>Screen technology</h2>
+    <p>There are different screen technologies for TV, each with their own advantages and disadvantages in terms color accuracy and contrast, viewing angles, design etc. They also differ in terms of energy efficiency. So one of the most pressing question on a cost-conscious consumer's mind is: Which screen technology is the most energy efficient to ensure low energy bills?</p>
+    <p>Online research would reveal that amongst the 3 most popular technologies, LCD, LED and OLED, OLED is the least energy efficient so it consumes the most energy while LED is most energy efficient so it consumes the least energy. LCD is in the middle in terms of energy efficiency and consumption. However, to get a definitive answer, it is better to investigate actual TV models in the market and compare the energy use. And since there are 
+
+
 `;
+
 
 const content_abt = `
     <h1>About us</h1>

@@ -229,3 +229,8 @@ The website includes:
 - Context that connects the data to real-world implications
 
 The aim is to guide the viewer through the data in a way that is **informative, engaging, and easy to understand**.
+
+## other references
+https://www.wiltronics.com.au/wiltronics-knowledge-base/lcd-vs-led-the-differences/
+https://bigledscreen.com.au/led-hire/the-difference-between-led-and-lcd/
+https://techreviewadvisor.com/oled-vs-lcd/
