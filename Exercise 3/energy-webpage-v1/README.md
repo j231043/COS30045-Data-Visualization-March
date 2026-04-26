@@ -1,3 +1,25 @@
+## Data Story
+
+### Audience
+
+The target audience for this visualisation is:
+- Consumers interested in **energy-efficient televisions**
+
+These audiences are interested in understanding how **television energy consumption varies across models, sizes, and technologies**, and how these factors influence overall energy usage.
+
+### Story Overview
+
+This visualisation explores patterns in **TV energy consumption** across different television models and specifications.
+
+The goal is to help viewers understand:
+
+- The relationship between **screen technology and power consumption**
+- The relationship between **screen size and power consumption**
+- How **energy efficiency ratings** impact energy usage
+- Trends that may help consumers choose more **energy-efficient televisions**
+
+The website presents these insights through visualisations and explanatory text that guide the viewer through the data.
+
 ## About the Data
 
 ### Data Source
