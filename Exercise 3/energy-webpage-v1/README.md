@@ -4,7 +4,7 @@
 
 The dataset used in this project contains information about **television models and their energy consumption characteristics**, including power usage, screen size, technology type, and efficiency ratings.
 
-The dataset was provided as part of the course materials.
+The dataset was provided as part of the course materials, and is made available by Australian government, and the data for TV is available at: https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9">https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9
 
 ### Data Processing
 
@@ -234,3 +234,4 @@ The aim is to guide the viewer through the data in a way that is **informative, 
 https://www.wiltronics.com.au/wiltronics-knowledge-base/lcd-vs-led-the-differences/
 https://bigledscreen.com.au/led-hire/the-difference-between-led-and-lcd/
 https://techreviewadvisor.com/oled-vs-lcd/
+https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9
