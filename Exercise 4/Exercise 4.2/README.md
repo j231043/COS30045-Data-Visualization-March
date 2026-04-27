@@ -1,5 +1,4 @@
-
-### AI USAGE
+# AI USAGE
 
 Introduction: 
 Tool Description: Microsoft Copilot
@@ -180,31 +179,7 @@ MODIFICATIONS MADE: used solution 1 (Show / hide sections (simplest, no routing)
 
 
 
-Reflection: The use of AI helped to correct my previously wrong understanding of CSS and Javascript, and proved that my knowledge is rather weak. I need to spend more time learning.
+Reflection: My previous way of using inner HTML was destructive and not compatible with d3. I learnt a better way to create dynamic pages using javascript
 
-Acknowledgment: Microsoft Copilot was used in the completion of this assignment, mainly to (a) clarify assignment requirements, (b) debug code
+Acknowledgment: Microsoft Copilot was used in the completion of this assignment, to correct bad coding practices
 
----
-
-## Website Storytelling
-
-The website has been updated to communicate a **data-driven story** based on the TV energy consumption dataset.
-
-The website includes:
-
-- Visualisations that present key insights from the dataset
-- Text explanations that help readers understand the meaning of the visualisations
-- Context that connects the data to real-world implications
-
-The aim is to guide the viewer through the data in a way that is **informative, engaging, and easy to understand**.
-
-## other references
-Javascript course: https://www.linkedin.com/learning/javascript-essential-training/javascript-the-soil-from-which-the-modern-web-grows?resume=false
-W3Schools: https://www.w3schools.com/
-GeeksforGeeks: https://www.geeksforgeeks.org/
-Power consumption for different screen technologies:
-https://www.wiltronics.com.au/wiltronics-knowledge-base/lcd-vs-led-the-differences/
-https://bigledscreen.com.au/led-hire/the-difference-between-led-and-lcd/
-https://techreviewadvisor.com/oled-vs-lcd/
-Tv data set source:
-https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9
