@@ -26,6 +26,9 @@ d3.csv("/Exercise 4/Exercise 4.5/data/data.csv", d => {
 const barHeight = 50;
 
 const createBarChart = data => {
+  const xScale = d3.scaleLinear()
+    .domain([0, 129])
+    .range([0, 90]);
   svg
   .selectAll("rect")
   .data(data)
@@ -34,9 +37,9 @@ const createBarChart = data => {
     console.log(d);
     return `bar bar-${d.Avg_mode_power}`;
    })
-  .attr("width", d => d.Avg_mode_power)
+  .attr("width", d => xScale(d.Avg_mode_power))
   .attr("height", barHeight)
-  .attr("x", 0)
+  .attr("x", 10)
   .attr("y", (d, i) => (barHeight + 5) * i);
 };
 
