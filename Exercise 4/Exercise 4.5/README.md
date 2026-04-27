@@ -106,3 +106,7 @@ Your CSV path is wrong because Live Server’s root is wrong.
 Start Live Server from the folder that contains both data/ and Exercise 4.4/, or adjust the path accordingly.
 
 MODIFICATIONS MADE: no modifications made, hardcoded path to data.csv
+
+Reflection: AI is useful in diagnosing and pinpointing errors, I should learn to understand some error codes and common causes
+
+Acknowledgment: Code is done with the aid of AI to troubleshoot issues
