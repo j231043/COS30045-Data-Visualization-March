@@ -36,6 +36,7 @@ const createBarChart = data => {
    })
   .attr("width", d => d.Avg_mode_power)
   .attr("height", barHeight)
-  
+  .attr("x", 0)
+  .attr("y", (d, i) => (barHeight + 5) * i);
 };
 
