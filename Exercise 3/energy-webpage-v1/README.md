@@ -233,11 +233,6 @@ Reflection: The use of AI helped to correct my previously wrong understanding of
 
 Acknowledgment: Microsoft Copilot was used in the completion of this assignment, mainly to (a) clarify assignment requirements, (b) debug code
 
-Other resources:
-Javascript course: https://www.linkedin.com/learning/javascript-essential-training/javascript-the-soil-from-which-the-modern-web-grows?resume=false
-W3Schools: https://www.w3schools.com/
-GeeksforGeeks: https://www.geeksforgeeks.org/
-
 ---
 
 ## Website Storytelling
@@ -253,7 +248,12 @@ The website includes:
 The aim is to guide the viewer through the data in a way that is **informative, engaging, and easy to understand**.
 
 ## other references
+Javascript course: https://www.linkedin.com/learning/javascript-essential-training/javascript-the-soil-from-which-the-modern-web-grows?resume=false
+W3Schools: https://www.w3schools.com/
+GeeksforGeeks: https://www.geeksforgeeks.org/
+Power consumption for different screen technologies:
 https://www.wiltronics.com.au/wiltronics-knowledge-base/lcd-vs-led-the-differences/
 https://bigledscreen.com.au/led-hire/the-difference-between-led-and-lcd/
 https://techreviewadvisor.com/oled-vs-lcd/
+Tv data set source:
 https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9
