@@ -12,15 +12,16 @@ svg
     .attr("fill", "blue");
 
 d3.csv("/Exercise 4/Exercise 4.4/data/data.csv", d => {
-  console.log(d); 
+  // console.log(d); 
+  return {
+    Screen_Tech: d.Screen_Tech,
+    Avg_mode_power: +d.Avg_mode_power
+  };
+}).then(data => {
+  console.log(data);
   }
 );
 
+CreateBarChart(data);
 
-// d3.csv("../data/data.csv")
-//   .then(data => {
-//     console.log(data);
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
+// const createBarChart = (data) => {
