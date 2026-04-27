@@ -10,3 +10,17 @@ svg
     .attr("width", 414)
     .attr("height", 16)
     .attr("fill", "blue");
+
+d3.csv("/Exercise 4/Exercise 4.4/data/data.csv", d => {
+  console.log(d); 
+  }
+);
+
+
+// d3.csv("../data/data.csv")
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });

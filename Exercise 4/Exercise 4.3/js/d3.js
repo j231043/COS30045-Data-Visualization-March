@@ -10,3 +10,4 @@ svg
     .attr("width", 414)
     .attr("height", 16)
     .attr("fill", "blue");
+
