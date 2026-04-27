@@ -12,7 +12,7 @@ const svg = d3.select(".responsive-svg-container")
 //     .attr("fill", "blue");
 
 
-d3.csv("/Exercise 4/Exercise 4.4/data/data.csv", d => {
+d3.csv("/Exercise 4/Exercise 4.5/data/data.csv", d => {
   // console.log(d); 
   return {
     Screen_Tech: d.Screen_Tech,
@@ -23,6 +23,7 @@ d3.csv("/Exercise 4/Exercise 4.4/data/data.csv", d => {
   createBarChart(data);
   }
 );
+const barHeight = 50;
 
 const createBarChart = data => {
   svg
@@ -33,5 +34,8 @@ const createBarChart = data => {
     console.log(d);
     return `bar bar-${d.Avg_mode_power}`;
    })
+  .attr("width", d => d.Avg_mode_power)
+  .attr("height", barHeight)
+  
 };
 
