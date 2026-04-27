@@ -1,76 +1,3 @@
-## Data Story
-
-### Audience
-
-The target audience for this visualisation is:
-- Consumers interested in **energy-efficient televisions**
-
-These audiences are interested in understanding how **television energy consumption varies across models, sizes, and technologies**, and how these factors influence overall energy usage.
-
-### Story Overview
-
-This visualisation explores patterns in **TV energy consumption** across different television models and specifications.
-
-The goal is to help viewers understand:
-
-- The relationship between **screen technology and power consumption**
-- The relationship between **screen size and power consumption**
-- How **energy efficiency ratings** impact energy usage
-- Trends that may help consumers choose more **energy-efficient televisions**
-
-The website presents these insights through visualisations and explanatory text that guide the viewer through the data.
-
-## About the Data
-
-### Data Source
-
-The dataset used in this project contains information about **television models and their energy consumption characteristics**, including power usage, screen size, technology type, and efficiency ratings.
-
-The dataset was provided as part of the course materials, and is made available by Australian government, and the data for TV is available at: https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9">https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9
-
-### Data Processing
-
-Before creating visualisations, the dataset was processed to ensure it was suitable for analysis. This included:
-
-- Cleaning missing or inconsistent values
-- Selecting relevant attributes for visualisation
-- Organising the data into formats suitable for web visualisation
-
-### Privacy
-
-The dataset does not contain any **personal or sensitive information**. It focuses solely on product specifications and energy consumption data related to television devices.
-
-### Accuracy and Limitations
-
-While the dataset provides useful information about TV energy consumption, there are some limitations:
-
-- The dataset may not include **all available television models**
-- Some information may be **outdated or incomplete**
-- Energy consumption may vary depending on **real-world usage conditions**
-
-These factors should be considered when interpreting the visualisations.
-
-### Ethics
-
-When presenting data visualisations, it is important to ensure that the information is represented **accurately and responsibly**.
-
-This project follows ethical data visualisation practices by:
-
-- Avoiding misleading visual representations
-- Clearly explaining the context of the data
-- Presenting information transparently so viewers can interpret the results correctly
-
----
-
-## AI Declaration
-
-Artificial Intelligence (AI) tools may have been used to assist with aspects of this assignment, such as:
-
-- Generating example code
-- Improving code structure
-- Assisting with documentation writing
-
-All AI-generated assistance was reviewed, modified where necessary, and integrated responsibly into the project.
 
 ### AI USAGE
 
@@ -79,154 +6,178 @@ Tool Description: Microsoft Copilot
 Usage Details: 
 
 1. question 1
-PROMPTS USED: 
-what does it mean to allows user to swap between the three pages using JavaScript? isnt it enough to use html anchor element?
-
-OUTPUT RECEIVED: 
-Great question — the difference comes down to how the navigation is handled and what kind of user experience you want to build.
-🔗 Using HTML anchor elements
-
-    An <a> tag simply links to another page (e.g., page2.html).
-
-    When clicked, the browser reloads the entire page and loads the new HTML file.
-
-    This is the traditional way of navigating between pages, and it works fine for static sites.
-
-    Downside: Every click causes a full page refresh, which can feel slower and less seamless.
-
-⚡ Using JavaScript to swap pages
-
-    Instead of loading separate HTML files, you can keep all three "pages" inside one HTML file (as different sections or divs).
-
-    JavaScript can then show/hide these sections dynamically when the user clicks a button or link.
-
-    This creates the illusion of switching pages without actually reloading the browser.
-
-    Benefits:
-
-        Faster transitions (no full reload).
-
-        You can maintain state (e.g., form inputs, scroll position).
-
-        Useful for single-page applications (SPAs) where everything runs in one HTML file.
-
-    Example:
-    html
-
-    <div id="page1">Welcome to Page 1</div>
-    <div id="page2" style="display:none;">This is Page 2</div>
-    <div id="page3" style="display:none;">Here’s Page 3</div>
-
-    <button onclick="showPage('page1')">Page 1</button>
-    <button onclick="showPage('page2')">Page 2</button>
-    <button onclick="showPage('page3')">Page 3</button>
-
-    <script>
-      function showPage(pageId) {
-        document.querySelectorAll('div').forEach(div => div.style.display = 'none');
-        document.getElementById(pageId).style.display = 'block';
-      }
-    </script>
-
-✅ When to use which
-
-    Anchor tags: Best for traditional multi-page websites where each page has its own HTML file.
-
-    JavaScript swapping: Best for modern web apps or when you want smooth, app-like navigation without reloads.
-
-So, it’s not that anchor tags are “not enough” — they’re just different. JavaScript swapping is about user experience optimization and building more dynamic interfaces.
-
-MODIFICATIONS MADE: 
-I used this to understand the the project requirements, and how does it differ from what I did for previous projects. Through this I am exposed to the term of client side routing, so I can do my own study. I did not use this code provided in my assignment.
-
-2. question 2
-PROMPTS USED:
-html:
-<footer>
-            <p id="footer-text">2026 by xxx</p>
-        </footer>
-
-css:
-footer {
-  position: fixed;
-  bottom: 0;
-  border-top: 1px solid black;
-}
-#footer-text {
-    display: flex;
-    justify-content: center;
-}
-
-why is the footer text still at bottom left of window
-
-OUTPUT RECEIVED: 
-The reason your footer text is stuck at the bottom-left is because of how CSS flexbox works. Right now, you’ve applied display: flex and justify-content: center only to the <p> element itself, not to the <footer> container. Since the <footer> is the positioned element, its child (<p>) is still aligned to the left by default.
-How to fix it
-
-You need to make the footer itself a flex container and center its contents:
-css
-
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;              /* make footer span full width */
-  border-top: 1px solid black;
-  display: flex;            /* turn footer into flexbox */
-  justify-content: center;  /* center children horizontally */
-}
-#footer-text {
-  margin: 0;                /* remove default paragraph margin */
-}
-
-Why this works
-
-    footer is now a flex container.
-
-    justify-content: center on the footer ensures all its children (like your <p>) are centered horizontally.
-
-    width: 100% makes the footer span across the entire bottom of the window.
-
-    Removing the default margin on <p> prevents it from shifting slightly.
-
-MODIFICATIONS MADE: 
-I added padding and background color
-
-3. question 3
-PROMPTS USED:
-in javascript
-
-const button_nav_home = document.querySelector("#nav-home");
-button_nav_home.setAttribute("background-color", "green")
-
-why is the element not changing background color
+PROMPTS USED: d3 not selecting elements added to html page using js template literal 
 
 OUTPUT RECEIVED:
-The issue is that you're using setAttribute incorrectly. The background-color property is a CSS style, not an HTML attribute. setAttribute("background-color", "green") won’t work because there’s no such attribute on HTML elements.
+This is a very common D3 + DOM timing / selection scope issue, not a problem with template literals themselves.
+Short version:
+D3 can only select elements that already exist in the DOM at the moment the selection runs.
+If your template-literal HTML is inserted after your D3 code runs, or inserted outside the selection’s scope, D3 won’t find it.
+Below are the most frequent causes and fixes, with concrete examples.
 
-✅ Correct ways to change the background color:
-javascript
+1. D3 runs before the template-literal HTML is added
+❌ Problem
+JavaScriptd3.selectAll(".bar")  .style("fill", "red");document.querySelector("#container").innerHTML = `  <div class="bar"></div>`;``Show more lines
+At the time D3 runs, .bar does not exist yet.
+✅ Fix
+Run D3 after inserting the HTML:
+JavaScriptdocument.querySelector("#container").innerHTML = `  <div class="bar"></div>`;d3.selectAll(".bar")  .style("fill", "red");Show more lines
 
-// Option 1: Use the style property
-button_nav_home.style.backgroundColor = "green";
+2. Using innerHTML breaks existing D3 selections
+When you do:
+JavaScriptelement.innerHTML = `...`;Show more lines
+the browser:
 
-// Option 2: Add a CSS class
-button_nav_home.classList.add("green-background");
+destroys existing nodes
+creates new ones from scratch
 
-// CSS
-.green-background {
-  background-color: green;
-}
+Any existing D3 references become invalid.
+✅ Best Practice
+Let D3 create the elements, instead of mixing innerHTML and D3:
+JavaScriptd3.select("#container")  .append("div")  .attr("class", "bar")  .style("fill", "red");Show more lines
+Or if you must use HTML strings, use D3’s .html():
+JavaScriptd3.select("#container")  .html(`<div class="bar"></div>`);d3.selectAll(".bar")  .style("background", "red");``Show more lines
 
-Why your code didn’t work
+3. Selecting outside the correct DOM scope
+❌ Problem
+JavaScriptd3.select("#container")  .html(`<div class="bar"></div>`);d3.selectAll(".bar"); // may fail if container isn't in DOM yet``Show more lines
+✅ Fix
+Select from the known parent:
+JavaScriptconst container = d3.select("#container");container.html(`<div class="bar"></div>`);container.selectAll(".bar")  .style("background", "red");Show more lines
 
-    setAttribute only sets HTML attributes (like id, class, src, etc.).
+4. Dynamically inserted HTML + event handlers
+❌ Problem
+JavaScriptd3.selectAll(".btn")  .on("click", handleClick);container.innerHTML += `<button class="btn">Click</button>`;Show more lines
+New buttons won’t have the handler.
+✅ Fix 1: Attach after insertion
+JavaScriptcontainer.innerHTML += `<button class="btn">Click</button>`;d3.selectAll(".btn").on("click", handleClick);Show more lines
+✅ Fix 2: Event delegation (recommended)
+JavaScriptd3.select("#container")  .on("click", (event) => {    if (event.target.matches(".btn")) {      handleClick(event);    }  });Show more lines
 
-    background-color is a CSS property, so it must be applied via .style or a CSS class.
+5. If you’re mixing D3 with template literals often (anti-pattern warning ⚠️)
+If you find yourself doing this:
+JavaScriptcontainer.innerHTML = `  <svg>    <circle class="dot"></circle>  </svg>`;d3.selectAll(".dot");Show more lines
+You’re fighting D3, not using it.
+✅ Idiomatic D3 way
+JavaScriptconst svg = d3.select("#container")  .append("svg");svg.append("circle")  .attr("class", "dot")  .attr("r", 10);Show more lines
 
-If you want a quick fix, go with the .style.backgroundColor approach. If you want reusable styling, define a CSS class and toggle it with JavaScript.
+6. When template literals are okay with D3
+Template literals are fine for:
 
-MODIFICATIONS MADE: 
-The answer corrected my understanding of setAttribute. No modification was made to the code.
+static HTML shells
+layout scaffolding
+once‑only rendering
+
+Example:
+JavaScriptd3.select("#container").html(`  <svg id="chart"></svg>`);const svg = d3.select("#chart");Show more lines
+
+Quick Debug Checklist ✅
+If D3 isn’t selecting your elements, check:
+
+✅ Does the element exist before the D3 selection runs?
+✅ Did innerHTML replace it after D3 selected it?
+✅ Are you selecting from the correct parent?
+✅ Are you re-attaching handlers after dynamic insertions?
+✅ Should D3 be creating the element instead?
+
+
+TL;DR
+
+Template literals don’t break D3 — timing and DOM replacement do.
+
+If you want, paste:
+
+how you insert the template literal
+the D3 selection that fails
+
+MODIFICATIONS MADE: change html page to avoid insertion and destruction of elements using innerHTML, see question 2
+
+2. question 2
+PROMPTS USED: how to allow user to swap between the pages using JavaScript?
+
+OUTPUT RECEIVED: 
+There are several common ways to let users swap between “pages” using JavaScript, depending on whether you want:
+
+a full page reload (traditional websites)
+a single‑page app (SPA) feel (recommended for modern JS/D3 apps)
+
+Below are the main patterns, from simplest to more advanced.
+
+1. Show / hide sections (simplest, no routing)
+Best if your “pages” are just different views.
+HTML
+JavaScript<nav>  <button onclick="showPage('home')">Home</button>  <button onclick="showPage('about')">About</button></nav><section id="home" class="page">Home page</section><section id="about" class="page hidden">About page</section>Show more lines
+CSS
+CSS.hidden {  display: none;}Show more lines
+JavaScript
+JavaScriptfunction showPage(id) {  document.querySelectorAll(".page").forEach(p =>    p.classList.add("hidden")  );  document.getElementById(id).classList.remove("hidden");}Show more lines
+✅ Very easy
+❌ URL does not change
+❌ No back/forward support
+
+2. Swap content dynamically (template literals)
+Good for small apps and dashboards.
+JS
+JavaScriptconst pages = {  home: `<h1>Home</h1><p>Welcome</p>`,  about: `<h1>About</h1><p>About us</p>`};function navigate(page) {  document.getElementById("app").innerHTML = pages[page];}Show more lines
+HTML
+HTML<button onclick="navigate('home')">Home</button><button onclick="navigate('about')">About</button><div id="app"></div>Show more lines
+✅ Simple
+✅ Fast
+❌ Breaks event handlers unless reattached
+
+3. Hash‑based navigation (#page) ✅ common solution
+This allows:
+
+back / forward buttons
+page reload persistence
+no server configuration
+
+HTML
+HTML<nav>  <a href="#home">Home</a>  <a href="#about">About</a></nav><div id="app"></div>Show more lines
+JavaScript
+HTMLconst routes = {  home: "<h1>Home</h1>",  about: "<h1>About</h1>"};function router() {  const page = location.hash.replace("#", "") || "home";  document.getElementById("app").innerHTML = routes[page];}window.addEventListener("hashchange", router);window.addEventListener("load", router);Show more lines
+✅ URL reflects state
+✅ Back/forward works
+✅ Easy to understand
+❌ URLs look like /#about
+
+4. History API (pushState) – clean URLs ✅ best practice
+Used by React, Vue Router, etc.
+JavaScript
+JavaScriptfunction navigate(path) {  history.pushState({}, "", path);  render(path);}function render(path) {  const app = document.getElementById("app");  switch (path) {    case "/about":      app.innerHTML = "<h1>About</h1>";      break;    default:      app.innerHTML = "<h1>Home</h1>";  }}window.addEventListener("popstate", () => {  render(location.pathname);});Show more lines
+HTML
+HTML<button onclick="navigate('/')">Home</button><button onclick="navigate('/about')">About</button><div id="app"></div>``Show more lines
+✅ Clean URLs
+✅ Back/forward works
+⚠️ Needs server fallback (index.html) on refresh
+
+5. Page navigation + D3 (important note)
+If you use D3, always re‑render charts after navigation:
+HTMLfunction render(path) {  const app = d3.select("#app").html("");  if (path === "/chart") {    const svg = app.append("svg").attr("width", 400).attr("height", 200);    svg.append("circle").attr("r", 50).attr("cx", 100).attr("cy", 100);  }}``Show more lines
+Avoid mixing:
+❌ innerHTML for chart elements
+✅ Let D3 create SVG elements
+
+Which approach should YOU use?
+
+GoalRecommendationSimple tabsShow / hide sectionsSmall projectHash routingSPA / D3 dashboardHistory APIMulti‑file websiteNormal page navigation
+
+TL;DR
+
+Modern JS page swapping = change content, not reload the page
+
+The most practical starter solution:
+✅ hash‑based routing
+If you want, tell me:
+
+whether this is a D3 app
+whether you want clean URLs
+whether you’re using a framework or vanilla JS
+
+and I’ll tailor the solution exactly to your setup.
+
+MODIFICATIONS MADE: used solution 1 (Show / hide sections (simplest, no routing)), edit to enable navigation menu to highlight selected section
+
 
 
 Reflection: The use of AI helped to correct my previously wrong understanding of CSS and Javascript, and proved that my knowledge is rather weak. I need to spend more time learning.

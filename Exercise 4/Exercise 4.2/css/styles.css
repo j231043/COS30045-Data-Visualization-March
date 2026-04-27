@@ -16,24 +16,19 @@ nav {
   background-color: #edac29;
 }
 
-.nav ul {
-  list-style-type: none;
-  padding: 0px 10px;
-  display: flex;
-  justify-content: left;
-}
-
-.nav li {
-  padding: 0 20px;
-}
-
-.nav ul li:hover {
-  color: #0004ff;
+.selected{
+  background-color: #f6f5b4;
 }
 
 main {
   padding: 0px 60px;
 }
+
+
+.hidden {
+  display: none;
+}
+
 
 footer {
   position: fixed;
