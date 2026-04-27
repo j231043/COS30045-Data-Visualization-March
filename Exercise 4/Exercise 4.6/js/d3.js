@@ -1,6 +1,6 @@
 const svg = d3.select(".responsive-svg-container")
     .append("svg")
-      .attr("viewBox", "0 0 100 1600")
+      .attr("viewBox", "0 0 100 200")
       .style("border", "1px solid black");
 
 // svg
@@ -29,6 +29,12 @@ const createBarChart = data => {
   const xScale = d3.scaleLinear()
     .domain([0, 129])
     .range([0, 90]);
+
+  const yScale = d3.scaleBand()
+    .domain(data.map(d => d.Screen_Tech))
+    .range([0, 200])
+    .padding(0.1);
+
   svg
   .selectAll("rect")
   .data(data)
@@ -38,8 +44,8 @@ const createBarChart = data => {
     return `bar bar-${d.Avg_mode_power}`;
    })
   .attr("width", d => xScale(d.Avg_mode_power))
-  .attr("height", barHeight)
+  .attr("height", yScale.bandwidth())
   .attr("x", 10)
-  .attr("y", (d, i) => (barHeight + 5) * i);
+  .attr("y", d => yScale(d.Screen_Tech));
 };
 
