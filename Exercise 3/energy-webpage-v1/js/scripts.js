@@ -41,13 +41,13 @@ const content_tv = `
 
     <p>For simplicity's sake, we will be using avg_mode_power, which is the amount of energy used by the appliance when the television is in use, since how much power the TV consumes when it is switched on and actively in use is a more realistic indicator of energy use for an average consumer. We will get the mean value of avg_mode_power for each type of screen technology, and the screen technology with the lowest mean value will be the one that consumes the least energy. The results are as follows:</p>
 
-    <img src="images/datagraph_tech.png" alt="Bar chart showing the mean of energy use when the tv is in use for each screen technology.">   
+    <img src="images/datagraph_tech.png" alt="Bar chart showing the mean of energy use when the tv is in use for each screen technology." >   
 
     <p>The x-axis or colored bars represent different screen technologies, while the y-axis or height of the bars show the mean value of avg_mode_power for the specific type of screen technology.The results are rather surprising. As we can see from the bar chart above, instead of LCD consuming the least energy as we stated in the hypothesis, the screen technology with lowest energy consumption is actually LED (the left bar in blue), with the mean value of 86.04, followed by LCD (the middle bar in green) with mean value of 120.11, and finally OLED (the right bar in yellow) with mean value of 128.71. There is a difference of around 35 between LED and LCD, while only a small difference of around 8 between LCD and OLED. This shows that LED consumes significantly less energy than the two other types screen technology, so consumers should select LCD TV for more energy savings.
     <br><br>
     The following image shows the summary of this section: </p>
 
-    <img src="images/summary_tech.png" alt="Summary of relationship between screen technology and power consumption section">
+    <img src="images/summary_tech.png" alt="Summary of relationship between screen technology and power consumption section" width="95%">
 
     <h2>Screen Size</h2>
     <p>Besides screen technology, another important consideration for consumers when selecting TV is the screen size. Generally speaking, bigger screen size will result in a better viewing experience, subject to the length and width of the room the TV will be placed in. However, as mentioned above, screen size is also one of the factors influencing energy consumption. So one question consumers will ask is: Will bigger screen size result in higher energy bills?
@@ -64,7 +64,7 @@ const content_tv = `
     <br><br>
     The following image shows the summary of this section: </p>
 
-    <img src="images/summary_size.png" alt="Summary of relationship between screen size and power consumption section">
+    <img src="images/summary_size.png" alt="Summary of relationship between screen size and power consumption section" width="95%">
 
     <h2>Star Rating</h2>
     <p>From the sections above, we can see that selecting LCD TV with smaller screen sizes are most likely to result in the lowest power consumption. However, not everyone wants to buy LCD TVs, and consumers would also want to buy TV with bigger screen sizes for better viewing enjoyment. So these consumers will likely ask: Are there any other criteria to look for if I do not want LCD or smaller screen sizes? Not to mention the fact that there are many TV models in the market, with overlapping screen technologies and screen sizes. So consumers will also be likely to be confused and ask: If presented a choice between different models with the same screen technology and screen size, which model should I choose? 
@@ -81,14 +81,14 @@ const content_tv = `
     <br><br>
     The following image shows the summary of this section: </p>
 
-    <img src="images/summary_star.png" alt="Summary of relationship between star rating and power consumption section" width="90%">
+    <img src="images/summary_star.png" alt="Summary of relationship between star rating and power consumption section" width="95%" >
 
     <h2>Conclusion</h2>
     <p>In general, power consumption of TV is affected by screen size and screen technology. The screen technology with lowest power consumption is LCD, followed by LED and OLED. The smaller the screen size, the lower the power consumption. However, this does not mean that consumers should restrict themselves to only LCD TVs with small screen sizes. In fact, a better indicator of power consumption would be to look at the star rating. The more stars or the higher the star rating, the lower the power consumption. Consumers can purchase TV with any screen technology and screen size as long as the model has a high star rating.
 
     The following image shows the storyboard of this page: </p>
 
-    <img src="images/storyboard_main.png" alt="Storyboard of how information in this page is presented to user." width="90%">
+    <img src="images/storyboard_main.png" alt="Storyboard of how information in this page is presented to user." width="95%">
     </p>
     <br><br><br><br>
 `;
