@@ -5,7 +5,7 @@
 The target audience for this visualisation is:
 - Consumers interested in **energy-efficient televisions**
 
-These audiences are interested in understanding how **television energy consumption varies across models, sizes, and technologies**, and how these factors influence overall energy usage.
+These audiences are interested in understanding how **television energy consumption varies across sizes, and technologies**, and how these factors influence overall energy usage.
 
 ### Story Overview
 
@@ -26,13 +26,14 @@ The website presents these insights through visualisations and explanatory text 
 
 The dataset used in this project contains information about **television models and their energy consumption characteristics**, including power usage, screen size, technology type, and efficiency ratings.
 
-The dataset was provided as part of the course materials, and is made available by Australian government, and the data for TV is available at: https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9">https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9
+The dataset was provided as part of the course materials, and is made available by Australian government, and the data for TV is available at: https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9
 
 ### Data Processing
 
 Before creating visualisations, the dataset was processed to ensure it was suitable for analysis. This included:
 
-- Cleaning missing or inconsistent values
+- Removing duplicates entries for the same models based on columns brand and model number
+- Categorizing models into different screen size category based on screensize indicated in model name. If model name does not indicate screen size category, actual screen size rounded to the nearest whole number in inches. Due to complexity of model name and limited ability, if the extracted screen size category differs from the actual screen size by more than 5 inches, the actual screen size 
 - Selecting relevant attributes for visualisation
 - Organising the data into formats suitable for web visualisation
 
