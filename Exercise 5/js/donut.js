@@ -1,4 +1,4 @@
-const svg_bar = d3.select("#bar")
+const svg_bar = d3.select("#donut")
     .append("svg")
       .attr("viewBox", [0, 0, width, height])
       .style("border", "1px solid black");
@@ -13,11 +13,12 @@ const drawBars = data => {
     .selectAll("g")
     .data(data)
     .join("g")
-    .attr("transform", d => `translate(${xScaleBar(d.screen_tech)}, 0)`);
+    .attr("transform", d => `translate(${xScaleBar(d.screen_tech)}, 0`);
 
   bars
     .append("rect")
     .attr("class", d => `bar bar-${d.energy_mean}`)
+    .attr("x", d => xScaleBar(d.screen_tech))
     .attr("y", d => yScaleBar(d.energy_mean))
     .attr("width", xScaleBar.bandwidth())
     .attr("height", d => innerHeight - yScaleBar(d.energy_mean))
