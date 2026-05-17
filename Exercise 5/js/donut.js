@@ -29,7 +29,7 @@ const drawDonut = data => {
     };
   });
   
-  console.log("formattedData", formattedData);
+  // console.log("formattedData", formattedData);
 
   const pieGenerator = d3.pie()
       .value(d => d.energy_mean)

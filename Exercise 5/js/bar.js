@@ -1,15 +1,15 @@
 const svg_bar = d3.select("#bar")
     .append("svg")
-      .attr("viewBox", [0, 0, width, height])
-      .style("border", "1px solid black");
+    .attr("viewBox", [0, 0, width, height])
+    .style("border", "1px solid black");
 
-const innerChart_bar = svg_bar
+const innerChartBar = svg_bar
     .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 const drawBars = data => {
 
-  const bars = innerChart_bar 
+  const bars = innerChartBar 
     .selectAll("g")
     .data(data)
     .join("g")

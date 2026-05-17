@@ -587,3 +587,57 @@ textLabels
 * **`labelArcGenerator`**: By setting both radii to `115px` (while your actual donut only goes up to `100px`), D3 calculates a coordinate point exactly 15 pixels outside the center perimeter of each slice.
 * **The `text-anchor` logic**: If a slice is on the right half of your donut (`midAngle < Math.PI`), it aligns the text to the `"start"` so it reads outward to the right. If it's on the left half, it flips to `"end"` so it reads outward to the left. This prevents your labels from crashing directly into the sides of the donut.
 * **`<tspan>`**: Think of these like `<span>` tags inside a `<p>` tag, but with layout superpowers. The `dy="1.3em"` property safely pushes the percentage line directly underneath your technology name line.
+
+
+Q:
+how to put x-axis and y-axis labels on bar chart, not the scales but the axis labels
+
+A:
+To add full text labels to your axes (like "Screen Technology" for the X-axis and "Mean Energy Consumption (kWh/year)" for the Y-axis), you need to append separate SVG `<text>` elements to your chart and position them relative to your margins.
+
+Here is the code you should add to the end of your `addLegendBar` function in `legend.js`:
+
+```javascript
+const addLegendBar = data => {
+    // ... (Keep your existing axes rendering and data labels code here) ...
+
+    // ==========================================
+    // 1. ADD X-AXIS TITLE LABEL
+    // ==========================================
+    innerChart_bar
+        .append("text")
+        // Center horizontally across the chart width
+        .attr("x", innerWidth / 2)
+        // Position it below the bottom axis lines (padding inside margin.bottom)
+        .attr("y", innerHeight + margin.bottom - 10) 
+        .style("text-anchor", "middle")
+        .style("font-family", "sans-serif")
+        .style("font-size", "12px")
+        .style("font-weight", "bold")
+        .text("Screen Technology"); // Change to your preferred text
+
+    // ==========================================
+    // 2. ADD Y-AXIS TITLE LABEL
+    // ==========================================
+    innerChart_bar
+        .append("text")
+        // Rotate the text box 90 degrees counter-clockwise so it runs vertically
+        .attr("transform", "rotate(-90)")
+        // Because it is rotated, 'x' moves it vertically, 'y' moves it horizontally
+        .attr("x", -innerHeight / 2) // Center vertically along the axis
+        .attr("y", -margin.left + 15) // Position it to the left of the axis tick labels
+        .style("text-anchor", "middle")
+        .style("font-family", "sans-serif")
+        .style("font-size", "12px")
+        .style("font-weight", "bold")
+        .text("Mean Energy Consumption (kWh/year)"); // Change to your preferred text
+}
+
+```
+
+### Layout Warning ⚠️
+
+If your labels look cut off or clash with your axis tick numbers, it means your margin arrays don't have enough breathing room. Ensure your global margins in your layout setup are configured to give the text space:
+
+* **`margin.bottom`** should be at least `40px` or `50px` to comfortably clear both the bar names and the X-axis label.
+* **`margin.left`** should be at least `50px` or `60px` so that the vertical Y-axis title doesn't bleed off the left edge of your SVG container.

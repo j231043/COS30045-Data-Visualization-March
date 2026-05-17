@@ -3,27 +3,27 @@ const addLegendBar = data => {
     const leftAxisBar = d3.axisLeft(yScaleBar)
     const bottomAxisBar = d3.axisBottom(xScaleBar)
 
-    innerChart_bar
+    innerChartBar
         .append("g")
         .attr("transform", `translate(0, ${innerHeight})`)
         .call(bottomAxisBar);
-    innerChart_bar
+    innerChartBar
         .append("g")
         .call(leftAxisBar);
-    innerChart_bar
+    innerChartBar
         .append("text")
         .text("Screen Technologies")
         .attr("x", innerWidth / 2)
         .attr("y", innerHeight + margin.bottom - 10)
         .style("text-anchor", "middle");
-    innerChart_bar
+    innerChartBar
         .append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -innerHeight / 2) 
         .attr("y", -margin.left + 25) 
         .style("text-anchor", "middle")
         .text("Mean Energy Consumption (kWh/year)");
-    innerChart_bar
+    innerChartBar
         .selectAll(".bar-label") 
         .data(data)             
         .join("text")
@@ -79,57 +79,45 @@ const addLegendDonut = data => {
     //     .style("font-weight", 500);
 }
 
+const addLegendLine = data => {
+    const innerChartLine = d3.select("#line g")
 
-
-    // years.forEach((year, index) => {
-    //     const donutContainer = d3.select(`.year-group-${year}`);
-   
-    //     const arcs = donutContainer.selectAll(`.arc-${year}`);
-
-    //     arcs
+    // const firstYear = d3.min(data, d => d.year);
+    // const lastYear = d3.max(data, d => d.year);
+    // const aubergine = "#75485E";
+    
+    // innerChartLine
     //     .append("text")
-    //     .text(d => {
-    //         d["percentage"] = (d.endAngle - d.startAngle)/ (2 * Math.PI);
-    //         return d3.format(".0%")(d.percentage);
-    //     })
-    //     .attr("x", d => {
-    //         d["centroid"] = arcGenerator
-    //         .startAngle(d.startAngle)
-    //         .endAngle(d.endAngle)
-    //         .centroid();
-    //         return d.centroid[0];
-    //     })
-    //     .attr("y", d => d.centroid[1])
-    //     .attr("text-anchor", "middle")
-    //     .attr("dominant-baseline", "middle")
-    //     .attr("fill", "#f6fafc")
-    //     .attr("fill-opacity", d => d.percentage< 0.05 ? 0 : 1)
-    //     .style("font-size", "16px")
-    //     .style("font-weight", 500);
+    //     .text("Average Price")
+    //     .attr("x", xScaleLine(lastYear) + 10)
+    //     .attr("y", yScaleLine(data[data.length - 1].avg_price))
+    //     .attr("fill", aubergine)
+    //     .attr("dominant-baseline", "middle"); 
 
-    //     donutContainer
-    //         .append("text")
-    //         .text(year)
-    //         .attr("text-anchor", "middle")
-    //         .attr("dominant-baseline", "middle")
-    //         .style("font-size", "24px")
-    //         .style("font-weight", 500);
+    const bottomAxis = d3.axisBottom(xScaleLine)
+        .tickFormat(d3.format("d"));
+    
+    innerChartLine
+        .append("g")
+        .attr("transform", `translate(0, ${innerHeight})`) 
+        .call(bottomAxis);
 
-    // })
+    const leftAxis = d3.axisLeft(yScaleLine);
+    innerChartLine
+        .append("g")
+        .call(leftAxis);
 
-    // const leftAxis = d3.axisLeft(yScale)
-    //     // below for percentage on left axis, without then will show absolute value
-    //     .tickFormat(d3.format(".0%"))
-    //     .ticks(5)
-    //     .tickSizeOuter(0);
-    // const bottomAxis = d3.axisBottom(xScale)
-    //     // below to ensure dont show label for every year 
-    //     .tickValues(d3.range(1991, 2024,5))
-    //     .tickSizeOuter(0);
-    // innerChart
-    //     .append("g")
-    //     .attr("transform", `translate(0, ${innerHeight})`)
-    //     .call(bottomAxis);
-    // innerChart
-    //     .append("g")
-    //     .call(leftAxis);
+    innerChartLine
+        .append("text")
+        .text("Year")
+        .attr("x", innerWidth / 2)
+        .attr("y", innerHeight + margin.bottom - 10)
+        .style("text-anchor", "middle");
+    innerChartLine
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -innerHeight / 2) 
+        .attr("y", -margin.left + 25) 
+        .style("text-anchor", "middle")
+        .text("Average power consumption");
+}
