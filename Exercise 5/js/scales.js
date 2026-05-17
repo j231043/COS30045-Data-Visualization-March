@@ -1,6 +1,6 @@
 const xScaleBar = d3.scaleBand();   
 const yScaleBar = d3.scaleLinear()
-const colorScaleBar = d3.scaleOrdinal();
+const colorScale = d3.scaleOrdinal();
 
 const defineScalesBar = (data) => {
     xScaleBar
@@ -12,6 +12,10 @@ const defineScalesBar = (data) => {
         .domain([0, d3.max(data, d => d.energy_mean)])
         .range([innerHeight, 0])
         .nice();
+    
+     colorScale
+        .domain(formatsInfo.map(f => f.id))
+        .range(formatsInfo.map(f => f.color));
 
 };
 

@@ -21,6 +21,7 @@ const drawBars = data => {
     .attr("y", d => yScaleBar(d.energy_mean))
     .attr("width", xScaleBar.bandwidth())
     .attr("height", d => innerHeight - yScaleBar(d.energy_mean))
+    .style("fill", d => colorScale(d.screen_tech));
 
 
 };

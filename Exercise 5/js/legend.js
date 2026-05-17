@@ -1,10 +1,4 @@
 const addLegendBar = data => {
-    innerChart_bar
-        .append("text")
-        // .attr("class", "graph-label")
-        .text("Energy consumption for different screen technologies for 55-inch TVs ")
-        .attr("x", -30)
-        .attr("y", -30)
 
     const leftAxisBar = d3.axisLeft(yScaleBar)
     const bottomAxisBar = d3.axisBottom(xScaleBar)
@@ -17,6 +11,19 @@ const addLegendBar = data => {
         .append("g")
         .call(leftAxisBar);
     innerChart_bar
+        .append("text")
+        .text("Screen Technologies")
+        .attr("x", innerWidth / 2)
+        .attr("y", innerHeight + margin.bottom - 10)
+        .style("text-anchor", "middle");
+    innerChart_bar
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -innerHeight / 2) 
+        .attr("y", -margin.left + 25) 
+        .style("text-anchor", "middle")
+        .text("Mean Energy Consumption (kWh/year)");
+    innerChart_bar
         .selectAll(".bar-label") 
         .data(data)             
         .join("text")
@@ -27,6 +34,49 @@ const addLegendBar = data => {
         .style("text-anchor", "middle");
 
 
+}
+
+const addLegendDonut = data => {
+    const svg_donut = d3.select("#donut")
+    const donutContainer = svg_donut
+
+    const arcs = donutContainer
+        .selectAll(`.arc`)
+
+    const labelArcGenerator = d3.arc()
+        .innerRadius(200) 
+        .outerRadius(200);
+
+    arcs
+        .append("text")
+        .text(d => {
+            const percentage = (d.endAngle - d.startAngle) / (2 * Math.PI);
+            const techName = d.data.format; 
+            const formattedPercent = d3.format(".0%")(percentage);
+            return `${techName}: ${formattedPercent}`;
+        })
+        .attr("x", d => {
+            d["centroid"] = labelArcGenerator
+            .startAngle(d.startAngle)
+            .endAngle(d.endAngle)
+            .centroid();
+            return d.centroid[0];
+        })
+        .attr("y", d => d.centroid[1])
+        .attr("text-anchor", "middle")
+        .attr("dominant-baseline", "middle")
+        .attr("fill", "#000000")
+        .attr("fill-opacity", d => d.percentage< 0.05 ? 0 : 1)
+        .style("font-size", "16px")
+        .style("font-weight", 500);
+
+    // donutContainer
+    //     .append("text")
+    //     .text(d.screen_tech)
+    //     .attr("text-anchor", "middle")
+    //     .attr("dominant-baseline", "middle")
+    //     .style("font-size", "24px")
+    //     .style("font-weight", 500);
 }
 
 

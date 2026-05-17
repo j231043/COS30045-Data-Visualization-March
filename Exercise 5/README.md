@@ -230,3 +230,360 @@ const addLegendBar = data => {
 1. **`.data(data).join("text")` was added:** This feeds your array to D3, making `d` accessible. It also changes the generated tag from a generic group container (`g`) to a literal browser-readable text tag (`text`).
 2. **`xScaleBar` usage:** Replaced `xScale` and `yScale` with your exact variable names (`xScaleBar` and `yScaleBar`).
 3. **Centered Alignment:** Used `xScaleBar.bandwidth() / 2` and `text-anchor: middle` to automatically center the numbers perfectly over your bars regardless of how wide your screen is, rather than using hardcoded pixel additions (like `75 + ...`).
+
+
+Q:
+data:
+0: Object { screen_tech: "LCD", energy_mean: 306.49623867952073 }
+​
+1: Object { screen_tech: "LED", energy_mean: 355.67927199496165 }
+​
+2: Object { screen_tech: "OLED", energy_mean: 533.0641742418338 }
+
+want to create single donut
+
+const techs = ["LCD", "LED", "OLED"]
+
+const drawDonut = data => {
+  const formattedData = []
+  
+  techs.forEach(tech => {
+    formattedData.push({
+      format: tech,
+      energy_mean: d.energy_mean[tech]
+  });
+
+  })
+  console.log("formattedData", formattedData)
+
+}
+how to format array to input into d3.pie()
+
+Q:
+To create a **single** donut chart comparing the three technologies against each other, your `formattedData` array needs to look like a list of three distinct objects (one for LCD, one for LED, and one for OLED).
+
+The issue in your current loop is `d.energy_mean[tech]`. The variable `d` isn't defined there, and your data is structured as an array of rows, not an object indexed by technology names.
+
+Instead of looping through your hardcoded `techs` array and trying to search, you can map your incoming `data` array directly into the format D3 needs.
+
+Here is the exact way to format your array and feed it to `d3.pie()`:
+
+```javascript
+const drawDonut = data => {
+  // 1. Map the loaded data directly to the structural format D3 expects
+  const formattedData = data.map(d => {
+    return {
+      format: d.screen_tech,      // This will be "LCD", "LED", or "OLED"
+      energy_mean: d.energy_mean  // This holds the numeric value
+    };
+  });
+  
+  console.log("formattedData", formattedData);
+  /* 
+    This will perfectly output:
+    [
+      { format: "LCD", energy_mean: 306.496... },
+      { format: "LED", energy_mean: 355.679... },
+      { format: "OLED", energy_mean: 533.064... }
+    ]
+  */
+
+  // 2. Setup your single pie layout generator
+  const pieGenerator = d3.pie()
+      .value(d => d.energy_mean) // Tell D3 to look at the energy numbers to calculate angles
+      .sort(null);               // Keeps the data in the original order (LCD -> LED -> OLED)
+  
+  // 3. Generate the angles (startAngle, endAngle) for each slice
+  const annotatedData = pieGenerator(formattedData);
+
+  // 4. Center your single donut chart directly in the middle of your SVG
+  const centerG = svg_donut
+      .append("g")
+      .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+  // 5. Draw the donut arcs
+  const arcs = centerG
+      .selectAll(".arc")
+      .data(annotatedData)
+      .join("g")
+      .attr("class", "arc");        
+  
+  arcs
+      .append("path")
+      .attr("d", arcGenerator) // Uses your existing arcGenerator config (inner/outer radius)
+      .attr("fill", d => colorScale(d.data.format)); // e.g., coloring by tech type ("LCD")
+};
+
+```
+
+### What changed?
+
+* **`data.map()`:** This eliminates the need for the `techs.forEach` loop entirely. It loops through your 3-row data array and translates it into a new array of objects cleanly.
+* **`d.data.format`:** When `pieGenerator` processes your data, it wraps your original objects into a new D3 layout object. Your custom properties move down into a `.data` key, which is why your color scale lookup becomes `d.data.format`.
+
+Q:
+why ${innerHeight / 2}) is still not in middle of box?
+
+A:
+Even after fixing the brackets, shifting by `${innerWidth / 2}, ${innerHeight / 2}` will still leave your donut off-center.
+
+This happens because of a mismatch between the coordinates of your inner container and the total width and height of the outer SVG box.
+
+Here are the two reasons why it's not landing perfectly in the middle:
+
+### 1. The Container Margin Shift Offset
+
+When you created `donutContainer`, you already shifted it right and down by your margins:
+
+```javascript
+const donutContainer = svg_donut
+    .append("g")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+```
+
+If you later apply a second `.attr("transform", ...)` to `donutContainer`, **you overwrite that original margin shift completely**.
+
+Furthermore, `innerWidth` and `innerHeight` represent only the *plotting area* (the space inside the margins). The exact center of your entire black border box is simply half of the **total SVG dimensions**: `width / 2` and `height / 2`.
+
+### 2. SVG Transform Overwriting
+
+In D3, if you run `.attr("transform", ...)` on the same element twice, the second one deletes the first one. It doesn't add them together.
+
+---
+
+### The Two Ways to Position It Perfectly
+
+Choose **one** of these two methods to center your donut:
+
+#### Method A: Center it globally (Easiest & Cleanest)
+
+If this SVG is only holding your donut chart, get rid of the margin shifting completely. Set the center coordinate directly on the container when you create it at the top of your file using `width` and `height`:
+
+```javascript
+// At the top of your file:
+const donutContainer = svg_donut
+    .append("g")
+    .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+// Inside your drawDonut function:
+// Delete the donutContainer.attr("transform", ...) line entirely! 
+// It is already centered.
+
+```
+
+#### Method B: Mathematical Addition (If you must keep margins)
+
+If you need to keep your margins active (for instance, if you are planning to add a legend box inside the margins later), you must include those margins in your translation math inside the `drawDonut` function:
+
+```javascript
+const drawDonut = data => {
+  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
+
+  // Math formula: Margin Shift + (Inner Dimension / 2)
+  const centerX = margin.left + (innerWidth / 2);
+  const centerY = margin.top + (innerHeight / 2);
+
+  donutContainer
+    .attr("transform", `translate(${centerX}, ${centerY})`);
+    
+  // ... rest of your code
+};
+
+```
+
+Using either of these approaches will account for the missing spacing and lock your donut directly into the true geometric center of your black border box.
+
+Q:
+ 
+  arcs
+      .append("path")
+      .attr("d", arcGenerator)
+      .data(data) 
+      .attr("fill", d => colorScale(d.data.format));
+      
+TypeError: can't access property "format", d.data is undefined
+
+A:
+The `TypeError: d.data is undefined` error is happening because you accidentally overwrote D3's pie chart calculation data by adding `.data(data)` directly to the path injection.
+
+Take a look at this part of your code:
+
+```javascript
+arcs
+  .append("path")
+  .attr("d", arcGenerator)
+  .data(data) // <--- CRITICAL ERROR: This overwrites the pie data!
+  .attr("fill", d => colorScale(d.data.format));
+
+```
+
+### What went wrong?
+
+When you created the `arcs` group using `.data(annotatedData)`, D3 created layout objects that look like this: `{ startAngle: ..., endAngle: ..., data: { format: "LCD", energy_mean: 306.49 } }`.
+
+By adding `.data(data)` right inside the path chain, you stripped away all those computed angles and the layout information, forcing the path to read your raw source data array instead. Because your raw data objects only have `screen_tech` and `energy_mean` on them, `d.data` completely disappears, causing the app to crash when setting the `.attr("fill")`.
+
+### The Fix
+
+Remove that `.data(data)` line completely. The path elements automatically inherit the correct layout data from their parent `g` (`arcs`).
+
+You also need to apply a positioning transform to `donutContainer` to center your chart, otherwise, your donut will be clipped by the top-left corner of your SVG borderbox.
+
+Here is the clean, working version of your code:
+
+```javascript
+const svg_donut = d3.select("#donut")
+    .append("svg")
+      .attr("viewBox", [0, 0, width, height])
+      .style("border", "1px solid black");
+
+// FIXED: Center the chart container directly in the middle of your SVG coordinate box
+const donutContainer = svg_donut
+    .append("g")
+    .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+const arcGenerator = d3.arc()
+    .innerRadius(60)
+    .outerRadius(100)
+    .padAngle(0.02)
+    .cornerRadius(3);
+
+const drawDonut = data => {
+  const formattedData = data.map(d => {
+    return {
+      format: d.screen_tech,      
+      energy_mean: d.energy_mean  
+    };
+  });
+
+  const pieGenerator = d3.pie()
+      .value(d => d.energy_mean)
+      .sort(null); 
+      
+  const annotatedData = pieGenerator(formattedData);
+
+  const arcs = donutContainer
+    .selectAll(".arc")
+    .data(annotatedData)
+    .join("g")
+    .attr("class", "arc");        
+
+  arcs
+      .append("path")
+      .attr("d", arcGenerator) // Automatically reads the angles passed down from 'arcs'
+      // FIXED: Removed the stray .data(data) loop breaker
+      .attr("fill", d => colorScale(d.data.format)); 
+};
+
+```
+
+### Note on Arc Generators
+
+You don't need to specify `.startAngle(d => d.startAngle)` and `.endAngle(d => d.endAngle)` explicitly inside your `d3.arc()` configurations anymore. D3's arc generator is smart enough to look for keys named precisely `startAngle` and `endAngle` inside the data array returned by `pieGenerator` by default!
+
+
+Q:
+arcs
+        .append("text")
+        .text(d => {
+            d["percentage"] = (d.endAngle - d.startAngle)/ (2 * Math.PI), d["tech"] =  d.screen_tech;
+            return d3.format(".0%")(d.percentage, d["tech"]);
+        })
+
+A:
+The reason your percentage is rendering but your technology text isn't showing up comes down to how `d3.format` works.
+
+The `d3.format` function **only formats numbers**—it does not support printing multiple arguments or strings like a standard `console.log` or template literal. When you pass `d["tech"]` as the second argument to `d3.format(".0%")(value, tech)`, it completely ignores it.
+
+Additionally, `d.screen_tech` is `undefined` at this step. Remember that inside the `arcs` loop, the `d3.pie()` generator has nested your original data fields inside a property called **`d.data`**. So, to grab the technology name, you need to call `d.data.screen_tech`.
+
+Here is how to clean up that state mutation inside your loops and format the string cleanly using a standard JavaScript template literal:
+
+```javascript
+arcs
+    .append("text")
+    // Calculate the coordinates to place the text precisely in the center of each slice
+    .attr("transform", d => `translate(${arcGenerator.centroid(d)})`)
+    .style("text-anchor", "middle")
+    .style("font-family", "sans-serif")
+    .style("font-size", "12px")
+    .text(d => {
+        // 1. Calculate the percentage value
+        const percentage = (d.endAngle - d.startAngle) / (2 * Math.PI);
+        
+        // 2. Safely grab your tech label string from the nested .data wrapper
+        const techName = d.data.screen_tech; 
+        
+        // 3. Format the percentage calculation cleanly
+        const formattedPercent = d3.format(".0%")(percentage);
+        
+        // 4. Return both combined using a clean template literal string
+        return `${techName}: ${formattedPercent}`;
+    });
+
+```
+
+### Key Enhancements Made:
+
+* **`d.data.screen_tech`:** Fixed the lookup so it stops fetching an empty `undefined` value.
+* **Template Literal (`${}...`)**: Used standard string templates to safely bind text strings and numbers together.
+* **`arcGenerator.centroid(d)`**: Added this positioning attribute. Without it, all your text labels will clump up directly in the top-left center position `(0,0)` of the donut hole. `centroid(d)` automatically calculates the geometric middle point of each slice for you.
+
+
+Q:
+i want text outside the donut by the arc, and with newline between tech and value
+
+A:
+Moving text outside a donut chart and breaking it into two lines requires two changes to your code structure:
+
+1. **The Position Fix**: Instead of using your regular `arcGenerator` to calculate the center, you create a *second*, larger invisible arc generator (with no inner radius) to act as a guide. This pushes the coordinates out past the outer edge of your donut.
+2. **The Newline Fix**: SVG `<text>` elements completely ignore `\n` or `<br>` tags. To create a true newline in SVG, you must append two separate `<tspan>` elements inside your text box and shift the second one down using the `dy` attribute.
+
+Here is the exact code to achieve this cleanly:
+
+```javascript
+// 1. Create a scaling guide arc that is larger than your donut (outerRadius was 100)
+// This will calculate points just outside the physical slices
+const labelArcGenerator = d3.arc()
+    .innerRadius(115) 
+    .outerRadius(115);
+
+// 2. Clear old text code and update with the multi-line layout
+const textLabels = arcs
+    .append("text")
+    .attr("transform", d => `translate(${labelArcGenerator.centroid(d)})`)
+    .style("font-family", "sans-serif")
+    .style("font-size", "12px")
+    .style("fill", "#333")
+    // Dynamically align text: Left-aligned on the right side, Right-aligned on the left side
+    .style("text-anchor", d => {
+        const midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+        return midAngle < Math.PI ? "start" : "end";
+    });
+
+// Line 1: Technology Label
+textLabels
+    .append("tspan")
+    .attr("x", 0) // Keeps it locked to the center calculation point
+    .text(d => d.data.format);
+
+// Line 2: Percentage Value (Shifted down onto a fresh line)
+textLabels
+    .append("tspan")
+    .attr("x", 0)   // Keeps alignment uniform with the line above
+    .attr("dy", "1.3em") // 'dy' pushes this element down by roughly one line-height
+    .style("font-weight", "bold")
+    .text(d => {
+        const percentage = (d.endAngle - d.startAngle) / (2 * Math.PI);
+        return d3.format(".0%")(percentage);
+    });
+
+```
+
+### Why this works:
+
+* **`labelArcGenerator`**: By setting both radii to `115px` (while your actual donut only goes up to `100px`), D3 calculates a coordinate point exactly 15 pixels outside the center perimeter of each slice.
+* **The `text-anchor` logic**: If a slice is on the right half of your donut (`midAngle < Math.PI`), it aligns the text to the `"start"` so it reads outward to the right. If it's on the left half, it flips to `"end"` so it reads outward to the left. This prevents your labels from crashing directly into the sides of the donut.
+* **`<tspan>`**: Think of these like `<span>` tags inside a `<p>` tag, but with layout superpowers. The `dy="1.3em"` property safely pushes the percentage line directly underneath your technology name line.
