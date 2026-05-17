@@ -17,17 +17,14 @@ const defineScalesBar = (data) => {
      colorScale
         .domain(formatsInfo.map(f => f.id))
         .range(formatsInfo.map(f => f.color));
-
 };
 
+// for line
 const xScaleLine = d3.scaleLinear()
 const yScaleLine = d3.scaleLinear()
-
-// for line
 const defineScalesLine = (data) => {
     const firstYear = d3.min(data, d => d.year);
     const lastYear = d3.max(data, d => d.year);
-    const aubergine = "#75485E";
     xScaleLine
         .domain([firstYear, lastYear])
         .range([0, innerWidth]);
@@ -35,6 +32,23 @@ const defineScalesLine = (data) => {
     const maxVal = d3.max(data, d => d.avg_price);
     yScaleLine
         .domain([0, maxVal])
+        .range([innerHeight, 0])
+        .nice();
+
+}
+
+// for scatter
+const xScaleScatter = d3.scaleLinear()
+const yScaleScatter = d3.scaleLinear()
+const defineScalesScatter = (data) => {
+    const lastStar = d3.max(data, d => d.star);
+    xScaleScatter
+        .domain([1, lastStar])
+        .range([0, innerWidth]);
+
+    const maxEnergy = d3.max(data, d => d.energy);
+    yScaleScatter
+        .domain([0, maxEnergy])
         .range([innerHeight, 0])
         .nice();
 

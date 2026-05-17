@@ -641,3 +641,46 @@ If your labels look cut off or clash with your axis tick numbers, it means your 
 
 * **`margin.bottom`** should be at least `40px` or `50px` to comfortably clear both the bar names and the X-axis label.
 * **`margin.left`** should be at least `50px` or `60px` so that the vertical Y-axis title doesn't bleed off the left edge of your SVG container.
+
+Q:
+location of labels are outside box instead and all in straight line without spaces 
+
+A:
+The reason your labels are bunched up into a single line completely outside your chart box comes down to two specific layout bugs inside your `legend.js` file:
+
+1. **`innerChartLine = svg_line`**: This overrides your inner chart group and targets the raw SVG root wrapper. Because it's missing the margin translation math (`margin.left`, `margin.top`), your axes are plotting relative to the absolute top-left corner of the HTML container instead of inside your plotting box.
+2. **`.data(data).append("g")`**: By binding your 27-row dataset to the axis container, D3 is creating **27 separate X-axes** on top of each other. The `.attr("transform", d => ...)` is calculating positions for each individual axis group, resulting in a chaotic collision of text lines.
+
+---
+
+### The Cleaned `legend.js` Fix
+
+An axis only needs to be appended **once** as a single operational component. D3 takes care of looping through your data array internally through the `xScaleLine` configurations.
+
+Replace your entire `legend.js` file with this corrected version:
+
+```javascript
+const addLegendLine = data => {
+    // 1. SELECT THE EXISTING INNER GROUP CONTAINER (It already has margins applied!)
+    const innerChartLine = d3.select("#line g"); 
+
+    // 2. CONFIGURE THE AXIS GENERATOR
+    const bottomAxis = d3.axisBottom(xScaleLine)
+        .tickFormat(d3.format("d")); // Clean integer formatting (no commas)
+    
+    // 3. RENDER THE AXIS EXACTLY ONCE
+    // Notice: NO .data(data) loop here!
+    innerChartLine
+        .append("g")
+        .attr("class", "axis-x")
+        // JavaScript template literal using the global innerHeight variable
+        .attr("transform", `translate(0, ${innerHeight})`) 
+        .call(bottomAxis);
+}
+
+```
+
+### Why this fixes your layout:
+
+* **`d3.select("#line g")`**: This cleanly grabs the `<g>` element created inside `line.js`. This guarantees that `0,0` coordinate space starts right at your inner plotting margin boundaries rather than the outer frame edge.
+* **Removing the `.data()` loop**: By dropping the data loop and setting a static horizontal translation offset of `0`, the axis anchors solidly at the start line. D3 then uses your active linear scale math to compute the exact, properly spaced pixel destinations for every single year stamp dynamically across your `innerWidth`.

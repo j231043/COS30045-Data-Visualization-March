@@ -1,5 +1,4 @@
 const addLegendBar = data => {
-
     const leftAxisBar = d3.axisLeft(yScaleBar)
     const bottomAxisBar = d3.axisBottom(xScaleBar)
 
@@ -32,14 +31,9 @@ const addLegendBar = data => {
         .attr("x", d => xScaleBar(d.screen_tech) + xScaleBar.bandwidth() / 2)
         .attr("y", d => yScaleBar(d.energy_mean)- 10)
         .style("text-anchor", "middle");
-
-
 }
 
 const addLegendDonut = data => {
-    const svg_donut = d3.select("#donut")
-    const donutContainer = svg_donut
-
     const arcs = donutContainer
         .selectAll(`.arc`)
 
@@ -69,43 +63,33 @@ const addLegendDonut = data => {
         .attr("fill-opacity", d => d.percentage< 0.05 ? 0 : 1)
         .style("font-size", "16px")
         .style("font-weight", 500);
-
-    // donutContainer
-    //     .append("text")
-    //     .text(d.screen_tech)
-    //     .attr("text-anchor", "middle")
-    //     .attr("dominant-baseline", "middle")
-    //     .style("font-size", "24px")
-    //     .style("font-weight", 500);
 }
 
 const addLegendLine = data => {
-    const innerChartLine = d3.select("#line g")
-
-    // const firstYear = d3.min(data, d => d.year);
-    // const lastYear = d3.max(data, d => d.year);
-    // const aubergine = "#75485E";
+    const firstYear = d3.min(data, d => d.year);
+    const lastYear = d3.max(data, d => d.year);
+    const aubergine = "#75485E";
     
-    // innerChartLine
-    //     .append("text")
-    //     .text("Average Price")
-    //     .attr("x", xScaleLine(lastYear) + 10)
-    //     .attr("y", yScaleLine(data[data.length - 1].avg_price))
-    //     .attr("fill", aubergine)
-    //     .attr("dominant-baseline", "middle"); 
+    innerChartLine
+        .append("text")
+        .text("Average Price")
+        .attr("x", xScaleLine(lastYear) - 30)
+        .attr("y", yScaleLine(data[data.length - 1].avg_price)-50)
+        .attr("fill", aubergine)
+        .attr("dominant-baseline", "middle"); 
 
-    const bottomAxis = d3.axisBottom(xScaleLine)
+    const bottomAxisLine = d3.axisBottom(xScaleLine)
         .tickFormat(d3.format("d"));
     
     innerChartLine
         .append("g")
         .attr("transform", `translate(0, ${innerHeight})`) 
-        .call(bottomAxis);
+        .call(bottomAxisLine);
 
-    const leftAxis = d3.axisLeft(yScaleLine);
+    const leftAxisLine = d3.axisLeft(yScaleLine);
     innerChartLine
         .append("g")
-        .call(leftAxis);
+        .call(leftAxisLine);
 
     innerChartLine
         .append("text")
@@ -119,5 +103,37 @@ const addLegendLine = data => {
         .attr("x", -innerHeight / 2) 
         .attr("y", -margin.left + 25) 
         .style("text-anchor", "middle")
-        .text("Average power consumption");
+        .text("Average price");
+}
+
+const addLegendScatter = data => {
+    const lastStar = d3.max(data, d => d.star);
+    const maxEnergy = d3.max(data, d => d.energy);
+    const aubergine = "#75485E";
+
+    const bottomAxisScatter = d3.axisBottom(xScaleScatter)
+    
+    innerChartScatter
+        .append("g")
+        .attr("transform", `translate(0, ${innerHeight})`) 
+        .call(bottomAxisScatter);
+
+    const leftAxisScatter = d3.axisLeft(yScaleScatter);
+    innerChartScatter
+        .append("g")
+        .call(leftAxisScatter);
+
+    innerChartScatter
+        .append("text")
+        .text("Star Rating")
+        .attr("x", innerWidth / 2)
+        .attr("y", innerHeight + margin.bottom - 10)
+        .style("text-anchor", "middle");
+    innerChartScatter
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -innerHeight / 2) 
+        .attr("y", -margin.left + 25) 
+        .style("text-anchor", "middle")
+        .text("Energy consumption");
 }
