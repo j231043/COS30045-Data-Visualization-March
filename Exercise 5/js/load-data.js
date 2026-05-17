@@ -13,9 +13,8 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv", row => ({
     energy_mean: +row["Mean(Labelled energy consumption (kWh/year))"]
 })).then(data => {
     console.log("Parsed data:", data);
-    defineScales(data);  
-    // drawDonutCharts(data);
-    // drawStackedBars(data);
-    // addLegend();
+    defineScalesBar(data);  
+    drawBars(data);
+    addLegendBar(data);
 });
 
