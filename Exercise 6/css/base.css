@@ -1,0 +1,36 @@
+body {
+  margin: 0px; 
+}
+
+header{
+  margin: 0; 
+  background-color: #f6f5b4;
+  padding: 15px 30px;
+  display: flex;            
+  justify-content: left; 
+  align-items: center;
+}
+ 
+
+
+main {
+  padding: 0px 60px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;              
+  border-top: 1px solid black;
+  margin: 5px;
+  padding: 0;
+  background-color: #f6f5b4;
+  display: flex;            
+  justify-content: center;  
+}
+
+footer_text p {
+  text-align: center;
+}
+
+
