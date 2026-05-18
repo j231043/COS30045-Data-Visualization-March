@@ -1,5 +1,5 @@
 // Load the csv file with a row conversion function
-d3.csv("data/Ex5_TV_energy.csv", row => ({
+d3.csv("data/Ex6_TVdata.csv", d => ({
     brand: d.brand,
     model: d.model,
     screenSize: +d.screenSize,
