@@ -1,5 +1,4 @@
-d3.selectAll("h1").style("color", "green");
-d3.selectAll("p").style("color", "blue");
+
 d3.select("div")
   .append("p")
     .text("Purchasing a low energy consumption TV will help with your energy bills!");
