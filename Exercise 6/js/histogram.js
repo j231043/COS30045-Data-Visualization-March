@@ -16,12 +16,12 @@ const drawHistogram = (data) => {
 
 
     // define scales
-    const minEng = bins[0].x0; // lower boundary
-    const maxEng = bins[bins.length - 1].x1; // upper boundary
-    console.log (maxEng)
+    const minEnergy = bins[0].x0; // lower boundary
+    const maxEnergy = bins[bins.length - 1].x1; // upper boundary
+    // console.log (maxEnergy)
     const binsMaxLength = d3.max(bins, d => d.length)
     xScaleHist
-        .domain([minEng, maxEng])
+        .domain([minEnergy, maxEnergy])
         .range([0, innerWidth]);
     yScaleHist
         .domain([0, binsMaxLength])

@@ -17,3 +17,15 @@
     font-size: 14px;
     fill: #5a3e2b
 }
+
+
+.filter {
+    background-color: rgb(236, 238, 232);
+}
+
+.filter:hover,
+.filter.active {
+    background-color: #ffd453;
+}
+
+

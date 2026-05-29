@@ -33,5 +33,5 @@ const filters_screen = [
     { id: "OLED", label: "OLED", isActive: false },
 ];
 
-const tooltipWidth = 65;
+const tooltipWidth = 150;
 const tooltipHeight = 32;

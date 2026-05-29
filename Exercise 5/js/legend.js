@@ -53,14 +53,13 @@ const addLegendDonut = data => {
             d["centroid"] = labelArcGenerator
             .startAngle(d.startAngle)
             .endAngle(d.endAngle)
-            .centroid();
+            .centroid(); // centroid() function returns x and y coordinate
             return d.centroid[0];
         })
         .attr("y", d => d.centroid[1])
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "middle")
         .attr("fill", "#000000")
-        .attr("fill-opacity", d => d.percentage< 0.05 ? 0 : 1)
         .style("font-size", "16px")
         .style("font-weight", 500);
 }
@@ -79,7 +78,7 @@ const addLegendLine = data => {
         .attr("dominant-baseline", "middle"); 
 
     const bottomAxisLine = d3.axisBottom(xScaleLine)
-        .tickFormat(d3.format("d"));
+        .tickFormat(d3.format("d")); //d to remove comma
     
     innerChartLine
         .append("g")
@@ -100,7 +99,7 @@ const addLegendLine = data => {
     innerChartLine
         .append("text")
         .attr("transform", "rotate(-90)")
-        .attr("x", -innerHeight / 2) 
+        .attr("x", -innerHeight / 2) // x=0 would be at top border of the box
         .attr("y", -margin.left + 25) 
         .style("text-anchor", "middle")
         .text("Average price");

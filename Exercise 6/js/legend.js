@@ -60,7 +60,6 @@ const addLegendDonut = data => {
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "middle")
         .attr("fill", "#000000")
-        .attr("fill-opacity", d => d.percentage< 0.05 ? 0 : 1)
         .style("font-size", "16px")
         .style("font-weight", 500);
 }

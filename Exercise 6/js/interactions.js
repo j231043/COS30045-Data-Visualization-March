@@ -9,14 +9,15 @@ const populateFilters = (data) => {
                 console.log("DOM event", e);
                 console.log("Attached datum", d);
 
-                if (!d.isActive){
-                    // make sure button clicked is not already active
+                // only run if clicked option not already active
+                if (!d.isActive){     
+                    //  Update the isActive state for all filters
                     filters_screen.forEach(filter => {
                         filter.isActive = d.id === filter.id? true : false;
                     });
 
-                    // update the filter buttons based on which one was clicked
-                    d3.selectAll("#filter_screen .filter")
+                    // update the filter buttons visuals based on which one was clicked by adding and removing the "active" to/from class attribute
+                    d3.selectAll("#filters_screen .filter")
                         .classed("active", filter => filter.id === d.id ? true : false)
 
                     updateHistogram(d.id, data);
@@ -41,9 +42,9 @@ const populateFilters = (data) => {
 
 const createTooltip = () => {
     const tooltip =innerChartScatterTech
-    .append("g")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
+        .append("g")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
 
     tooltip
         .append("rect")
@@ -69,7 +70,7 @@ const handleMouseEvents = ()=> {
     innerChartScatterTech.selectAll("circle")
         .on("mouseenter", (e, d) => {
             d3.select(".tooltip text")
-                .text(d.screenSize);
+                .text(`${d.brand} (${d.screenSize})`);
             const cx = e.target.getAttribute("cx");
             const cy = e.target.getAttribute("cy");
             d3.select(".tooltip")

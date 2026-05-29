@@ -46,7 +46,5 @@ const drawScatterTech = data => {
         .attr("fill", d => colorScaleTech(d.screenTech))
         .attr("opacity", 0.2)
         .attr("cx", d => xScaleScatterTech(d.star) + (Math.random() - 0.5) * 10);
-        //If your background is light, adding a solid, dark stroke with a semi-transparent fill helps the human eye distinguish individual circle boundaries even when they are clustered tightly together.
-        // .attr("stroke", "#fff") // White border separates overlapping edges
-        // .attr("stroke-width", 1);
+
 }
