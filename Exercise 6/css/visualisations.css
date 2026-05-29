@@ -1,7 +1,9 @@
 /* responsive container of svg element */
 .responsive-svg-container {
+    margin-right: auto;
+    margin-left: auto;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
 }
 
 @media screen and (max-width: 596px) {
