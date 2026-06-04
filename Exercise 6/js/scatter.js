@@ -41,7 +41,6 @@ const drawScatterTech = data => {
         .join("circle")
         .attr("class", "circle")
         .attr("r", 4)
-        .attr("cx", d => xScaleScatterTech(d.star))
         .attr("cy", d => yScaleScatterTech(d.energyConsumption))
         .attr("fill", d => colorScaleTech(d.screenTech))
         .attr("opacity", 0.2)

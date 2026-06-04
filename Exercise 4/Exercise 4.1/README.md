@@ -90,7 +90,7 @@ MODIFICATIONS MADE: code provided not used because gave up on rotation idea.
 
 Reflection: Helped me learn more about svg
 
-Acknowledgment: Microsoft Copilot was used in the completion of this assignment, to understand SVG further
+Acknowledgment: Google gemini was used in the completion of this assignment, to understand SVG further
 
 References:
 https://svg-tutorial.com/svg/quadratic-bezier

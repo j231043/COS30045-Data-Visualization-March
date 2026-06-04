@@ -26,7 +26,7 @@ svg44
     .attr("height", 16)
     .attr("fill", "blue");
 
-d3.csv("/Exercise 4/Exercise 4.4/data/data.csv", d => {
+d3.csv("data/data.csv", d => {
   // console.log(d); 
   return {
     Screen_Tech: d.Screen_Tech,
@@ -50,7 +50,7 @@ const svg45 = d3.select("#ex4-5-responsive-svg-container")
       .style("border", "1px solid black");
 
 
-d3.csv("/Exercise 4/Exercise 4.5/data/data.csv", d => {
+d3.csv("data/data.csv", d => {
   // console.log(d); 
   return {
     Screen_Tech: d.Screen_Tech,
@@ -85,7 +85,7 @@ const svg46 = d3.select("#ex4-6-responsive-svg-container")
       .attr("viewBox", "0 0 100 200")
       .style("border", "1px solid black");
 
-d3.csv("/Exercise 4/Exercise 4.5/data/data.csv", d => {
+d3.csv("data/data.csv", d => {
   // console.log(d); 
   return {
     Screen_Tech: d.Screen_Tech,

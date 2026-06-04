@@ -26,7 +26,7 @@ svg44
     .attr("height", 16)
     .attr("fill", "blue");
 
-d3.csv("/Exercise 4/Exercise 4.4/data/data.csv", d => {
+d3.csv("data/data.csv", d => {
   // console.log(d); 
   return {
     Screen_Tech: d.Screen_Tech,
@@ -37,6 +37,6 @@ d3.csv("/Exercise 4/Exercise 4.4/data/data.csv", d => {
   }
 );
 
-CreateBarChart(data);
+// CreateBarChart(data);
 
 // const createBarChart = (data) => {
